@@ -37,7 +37,9 @@ html,body{height:100%;margin:0;overflow:hidden;background:#0A3A28;color:#fff;fon
 .hs .pulse{position:absolute;left:50%;top:50px;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;border:3px solid var(--gold);animation:pulse 2.2s ease-out infinite}
 .hs .mid{width:70px;height:70px;background:rgba(214,173,101,.5)}
 .hs .dot{width:30px;height:30px;background:var(--gold);border:4px solid #fff;transition:transform .25s}
-.hs .lab{position:absolute;left:50%;top:118px;transform:translateX(-50%);white-space:nowrap;background:var(--green);border:2px solid var(--gold);color:#fff;font-weight:600;font-size:24px;padding:9px 22px;border-radius:999px;transition:background .25s,color .25s,transform .25s}
+.hs .lab{position:absolute;left:50%;top:118px;transform:translateX(-50%);white-space:nowrap;display:inline-flex;align-items:center;gap:12px;background:var(--green);border:2px solid var(--gold);color:#fff;font-weight:600;font-size:24px;padding:9px 22px;border-radius:999px;transition:background .25s,color .25s,transform .25s}
+.hs .num{display:inline-grid;place-items:center;min-width:36px;height:36px;margin:-4px 0 -4px -14px;border-radius:999px;background:var(--gold);color:var(--green-deep);font-weight:800;font-size:19px;line-height:1;transition:background .25s,color .25s}
+.hs button:hover .num,.hs button:focus-visible .num{background:var(--green);color:#fff}
 .hs button:hover .dot,.hs button:focus-visible .dot{transform:translate(-50%,-50%) scale(1.3)}
 .hs button:hover .lab,.hs button:focus-visible .lab{background:var(--gold);color:var(--green-deep);transform:translateX(-50%) translateY(-3px)}
 .hs button:focus-visible{outline:4px solid var(--sun);outline-offset:2px}
@@ -174,7 +176,7 @@ LAYERS.forEach(function(L){
 function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
 FACTORS.forEach(function(F){
   var hs=document.createElement('div');hs.className='hs';hs.style.left=F.P[0]+'px';hs.style.top=F.P[1]+'px';
-  hs.innerHTML='<button type="button" aria-label="'+F.label+'"><span class="pulse"></span><span class="ring"></span><span class="mid"></span><span class="dot"></span><span class="lab">'+F.label+'</span></button>';
+  hs.innerHTML='<button type="button" aria-label="'+F.label+'"><span class="pulse"></span><span class="ring"></span><span class="mid"></span><span class="dot"></span><span class="lab"><b class="num">'+F.n+'</b>'+F.label+'</span></button>';
   hs.firstChild.addEventListener('click',function(){open(F.k);});
   pars[F.layer].appendChild(hs);
   outers[F.layer].style.pointerEvents='none';
