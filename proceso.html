@@ -40,9 +40,10 @@ body{font-family:var(--body);color:#fff;touch-action:none}
 .pi.on{opacity:1;transform:scale(1)}
 .ct{left:0;right:0;top:12px;text-align:center;font:800 116px/1 var(--display);color:var(--green);opacity:0;z-index:9;pointer-events:none;white-space:nowrap}
 .ct{display:flex;flex-direction:column;align-items:center;gap:0}.ct .cm{font:800 84px/1 var(--body);letter-spacing:-.01em;color:var(--green)}.ct .cb{font:800 64px/1 var(--display);color:var(--green);margin-top:6px}
+.title.t{left:0;right:0;width:auto;top:44px;text-align:center;font-size:112px;line-height:1;white-space:nowrap}
 </style></head><body>
 <div class="viewport"><div class="stage" id="stage">
- <div class="l title" id="title">Máquina de Espresso</div>
+ <div class="l title t" id="title">Máquina de Espresso</div>
  <div class="l frame" id="fr"><video id="v1" muted playsinline preload="auto"><source src="baristaw.webm" type="video/webm"><source src="baristaw.mp4" type="video/mp4"></video></div>
  <div class="card" id="c1" style="left:1180px;top:290px;--r:-1.5deg"><h3>1901 · Milán</h3><p>Comenzó a operar en noviembre de 1901, en Milán, Italia.</p></div>
  <div class="card" id="c2" style="left:1180px;top:540px;--r:1.5deg"><h3>Luigi Bezzera</h3><p>A este italiano se le atribuye la primera máquina que producía café tipo «espresso».</p></div>
@@ -87,7 +88,7 @@ var v2on=false,v2man=false;
 var pi=$('pi'),ct=$('ct');function upi(){pi.classList.toggle('on',v2.paused&&v2on&&v2.currentTime>.05);}v2.addEventListener('pause',upi);v2.addEventListener('play',upi);v2.addEventListener('seeked',upi);vw.style.cursor='pointer';vw.addEventListener('click',function(){if(v2.paused){v2.play();}else{v2.pause();}});
 var curTitle='',l1=-1,l2=-1;
 function setTitle(t){if(t===curTitle)return;curTitle=t;title.classList.add('sw');setTimeout(function(){title.textContent=t;title.classList.remove('sw');},220);}
-var curTitle='Máquina de Espresso';function setTitle(x){if(x===curTitle)return;curTitle=x;title.classList.add('sw');setTimeout(function(){title.textContent=x;title.classList.toggle('b',x.charAt(0)==='E'&&x.length<12);title.classList.remove('sw');},220);}
+var curTitle='Máquina de Espresso';function setTitle(x){if(x===curTitle)return;curTitle=x;title.classList.add('sw');setTimeout(function(){title.textContent=x;title.classList.toggle('b',x.charAt(0)==='E'&&x.length<12);title.classList.toggle('t',x.charAt(0)==='M');title.classList.remove('sw');},220);}
 function seek(v,t,last){if(Math.abs(t-last)>.03&&v.readyState>=1){try{v.currentTime=t;return t;}catch(e){}}return last;}
 function render(p){
   var tm=clamp((p-A)/B,0,1)*D1;
