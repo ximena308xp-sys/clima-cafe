@@ -203,7 +203,7 @@ function fxHTML(F,c){
   if(F.k==='lluvia'){var q=sp(c,'bg',1183,170);
     for(i=0;i<90;i++){var dx=q.x-260+rnd()*520,dy=q.y+40+rnd()*300,len=34+rnd()*34;h+='<g class="drop" style="animation-duration:'+(1+rnd()*.9).toFixed(2)+'s;animation-delay:-'+(rnd()*2).toFixed(2)+'s"><path d="M'+dx.toFixed(0)+' '+dy.toFixed(0)+'l'+(-len*.22).toFixed(0)+' '+len.toFixed(0)+'" stroke="#EAF7FF" stroke-opacity="'+(.45+rnd()*.5).toFixed(2)+'" stroke-width="'+(2.4+rnd()*1.4).toFixed(1)+'" stroke-linecap="round"/></g>';}
   }
-  if(F.k==='viento'){var w=sp(c,'bg',1500,690);
+  if(F.k==='viento'){var w=sp(c,'bg',1350,690);
     for(i=0;i<8;i++){var yy=w.y-230+i*58;h+='<path class="streak" style="animation-delay:-'+(i*.45).toFixed(2)+'s" d="M'+(w.x-250)+' '+yy+'C'+(w.x-80)+' '+(yy-60)+' '+(w.x+70)+' '+(yy+60)+' '+(w.x+250)+' '+yy+'S'+(w.x+570)+' '+(yy-50)+' '+(w.x+780)+' '+(yy+10)+'" stroke="#fff" stroke-opacity="'+(.85-i*.06).toFixed(2)+'" stroke-width="4.5" stroke-linecap="round" fill="none"/>';}
     for(i=0;i<9;i++){var lx=w.x-200+rnd()*600,ly=w.y-210+rnd()*400;h+='<g transform="translate('+lx.toFixed(0)+' '+ly.toFixed(0)+')"><g class="lf" style="animation-delay:-'+(rnd()*5).toFixed(2)+'s"><path d="M0 0C10 -13 30 -13 40 0Z" fill="#46B677"/><path d="M0 0C10 13 30 13 40 0Z" fill="#1E9A68"/></g></g>';}
   }
