@@ -41,6 +41,11 @@ body{font-family:var(--body);color:#fff;touch-action:none}
 .ct{left:0;right:0;top:12px;text-align:center;font:800 116px/1 var(--display);color:var(--green);opacity:0;z-index:9;pointer-events:none;white-space:nowrap}
 .ct{display:flex;flex-direction:column;align-items:center;gap:0}.ct .cm{font:800 84px/1 var(--body);letter-spacing:-.01em;color:var(--green)}.ct .cb{font:800 64px/1 var(--display);color:var(--green);margin-top:6px}
 .title.t{left:0;right:auto;width:1680px;top:60px;text-align:center;font-size:112px;line-height:1;white-space:nowrap}
+.card.dk{background:none;border:0;box-shadow:none;padding:0;border-radius:0;color:#084A32}
+.card.dk h3{font-size:64px;color:var(--green);margin:0 0 14px}
+.card.dk h3::after{content:"";display:block;width:90px;height:7px;border-radius:4px;background:var(--gold);margin-top:12px}
+.card.dk p{font-size:28px;line-height:1.38;color:#084A32;font-weight:700}
+.title.t{width:1920px}
 </style></head><body>
 <div class="viewport"><div class="stage" id="stage">
  <div class="l title t" id="title">Máquina de Espresso</div>
@@ -48,9 +53,9 @@ body{font-family:var(--body);color:#fff;touch-action:none}
  <div class="card" id="c1" style="left:1180px;top:290px;--r:-1.5deg"><h3>1901 · Milán</h3><p>Comenzó a operar en noviembre de 1901, en Milán, Italia.</p></div>
  <div class="card" id="c2" style="left:1180px;top:540px;--r:1.5deg"><h3>Luigi Bezzera</h3><p>A este italiano se le atribuye la primera máquina que producía café tipo «espresso».</p></div>
  <div class="card" id="c3" style="left:1180px;top:790px;--r:-1deg"><h3>Caldera vertical</h3><p>Colocada como columna, proyectaba el vapor.</p></div>
- <div class="card dk" id="d1" style="left:50px;top:8px;--r:-1deg"><h3>La palabra</h3><p>«Barista» nace en Italia: el especialista en elaborar bebidas a base de café.</p></div>
- <div class="card dk" id="d2" style="left:665px;top:8px;--r:1deg"><h3>Bari, Italia</h3><p>Las personas originarias de Bari se distinguieron en este oficio, y de ahí surge la expresión.</p></div>
- <div class="card dk" id="d3" style="left:1280px;top:8px;--r:-1deg"><h3>El catador</h3><p>Aprendió, de los sorbos de café, a distinguir las diferencias entre las preparaciones.</p></div>
+ <div class="card dk" id="d1" style="left:50px;top:300px;width:410px;height:auto;--r:0deg"><h3>La palabra</h3><p>«Barista» nace en Italia: el especialista en elaborar bebidas a base de café.</p></div>
+ <div class="card dk" id="d2" style="left:1528px;top:330px;width:372px;height:auto;--r:0deg"><h3>Bari, Italia</h3><p>Las personas originarias de Bari se distinguieron en este oficio, y de ahí surge la expresión.</p></div>
+ <div class="card dk" id="d3" style="left:50px;top:650px;width:410px;height:auto;--r:0deg"><h3>El catador</h3><p>Aprendió, de los sorbos de café, a distinguir las diferencias entre las preparaciones.</p></div>
  <div class="l ct" id="ct"><span class="cm">Curiosidades</span> <span class="cb">del café</span></div>
  <div class="l vwrap" id="vw"><video id="v2" muted playsinline preload="auto"><source src="curiosidades.webm" type="video/webm"><source src="curiosidades.mp4" type="video/mp4"></video><div class="pi" id="pi"><i></i><i></i></div><div class="prog"><i id="vp"></i></div></div>
  <div class="rail" aria-hidden="true"><i id="rf"></i></div>
@@ -88,13 +93,13 @@ var v2on=false,v2man=false;
 var pi=$('pi'),ct=$('ct');function upi(){pi.classList.toggle('on',v2.paused&&v2on&&v2.currentTime>.05);}v2.addEventListener('pause',upi);v2.addEventListener('play',upi);v2.addEventListener('seeked',upi);vw.style.cursor='pointer';vw.addEventListener('click',function(){if(v2.paused){v2.play();}else{v2.pause();}});
 var curTitle='',l1=-1,l2=-1;
 function setTitle(t){if(t===curTitle)return;curTitle=t;title.classList.add('sw');setTimeout(function(){title.textContent=t;title.classList.remove('sw');},220);}
-var curTitle='Máquina de Espresso';function setTitle(x){if(x===curTitle)return;curTitle=x;title.classList.add('sw');setTimeout(function(){title.textContent=x;title.classList.toggle('b',x.charAt(0)==='E'&&x.length<12);title.classList.toggle('t',x.charAt(0)==='M');title.classList.remove('sw');},220);}
+var curTitle='Máquina de Espresso';function setTitle(x){if(x===curTitle)return;curTitle=x;title.classList.add('sw');setTimeout(function(){title.textContent=x;title.classList.remove('b');title.classList.add('t');title.classList.remove('sw');},220);}
 function seek(v,t,last){if(Math.abs(t-last)>.03&&v.readyState>=1){try{v.currentTime=t;return t;}catch(e){}}return last;}
 function render(p){
   var tm=clamp((p-A)/B,0,1)*D1;
   var ex=sm(.60,.70,p);
   Object.keys(W).forEach(function(k){var w=W[k],e=$(k),v=sm(w[0],w[1],tm)*(1-sm(w[2],w[3],tm))*(1-ex);
-    e.style.opacity=v;var d=k[0]==='d';e.style.transform='translate('+(d?0:60*(1-v))+'px,'+(d?-40*(1-v)-ex*60:0)+'px) rotate('+RR[k]+')';});
+    e.style.opacity=v;var d=k[0]==='d';var sd=(k==='d2')?1:-1;e.style.transform='translate('+(d?sd*(60*(1-v)+ex*60):60*(1-v))+'px,0px) rotate('+RR[k]+')';});
   fr.style.opacity=1-ex;fr.style.transform='scale('+(1-.2*ex)+')';
   l1=seek(v1,tm,l1);
   var vi=sm(.66,.76,p);
@@ -104,7 +109,7 @@ function render(p){
   if(p>=.72&&!v2on&&!v2man){v2on=true;try{v2.currentTime=0;}catch(e){}var pr=v2.play();if(pr&&pr.catch)pr.catch(function(){});}
   if(p<.66&&(v2on||v2man)){v2on=false;v2man=false;v2.pause();pi.classList.remove('on');try{v2.currentTime=0;}catch(e){}}
   vp.style.width=(D2?clamp(v2.currentTime/D2,0,1)*100:0)+'%';
-  setTitle(p>=.62?'':(tm<3.3?'Máquina de Espresso':'El\nbarista'));title.style.opacity=title.classList.contains('sw')?0:1-sm(.58,.64,p);
+  setTitle(p>=.62?'':(tm<3.3?'Máquina de Espresso':'El barista'));title.style.opacity=title.classList.contains('sw')?0:1-sm(.58,.64,p);
   rf.style.height=(p*100)+'%';
   cue.style.opacity=(1-sm(0,.03,p))*(1-ex);
 }
